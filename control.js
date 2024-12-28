@@ -70,4 +70,6 @@ for (var d of arr) {
    
   console.log(d); 
 }
+
+
     

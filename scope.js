@@ -1,4 +1,4 @@
-/*const pi=3.0
+const pi=3.0
 var a=5
 console.log(pi)
 console.log(a)
@@ -8,7 +8,4 @@ console.log(a)
     console.log(a)
     console.log(b)
 }
-console.log(a)*/
-console.log(a)
-let a=5
 console.log(a)

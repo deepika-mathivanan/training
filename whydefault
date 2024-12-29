@@ -1,0 +1,2 @@
+This makes it easier to import the component or function in other files without having to use its exact name.
+When you use export default, you can import the component with any name you choose.

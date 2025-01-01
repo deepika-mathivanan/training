@@ -1,27 +1,10 @@
-.box {
-    width: 1000px;
-    height: 100px;
-    padding: 20px;
-    border: 30px solid rgb(27, 167, 81);
-    margin: 10px solid rgb(223, 17, 51);
-    background-color: rgb(11, 172, 225);
-    display: flex;
-  }
-  
-  .navbar {
-    display: flex;
-    justify-content: center;
-    background-color: #f31010;
-    padding: 10px 0;
-  }
-  
   .nav-items {
     
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 20px;
+    gap: 10px;
   }
   
   .nav-item {
@@ -29,7 +12,7 @@
     text-align: center;
     background-color: #181717;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 65px;
     cursor: pointer;
     transition: all 0.3s ease;
   }

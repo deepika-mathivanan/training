@@ -1,32 +1,37 @@
 import React from "react";
-import Navbar from "./components/functioncomponent/Navbar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/functioncomponent/navbar";
 import Classcomp from "./components/classcomponent/Classcomp";
-import About from "./components/functioncomponent/about";
-import Gallery from "./components/functioncomponent/gallery";
+import About from "./components/functioncomponent/About";
+import Gallery from "./components/functioncomponent/Gallery";
 import Contact from "./components/functioncomponent/Contact";
-import Home from "./components/functioncomponent/home";
+import Home from "./components/functioncomponent/Home";
+import UseEffect from "./components/functioncomponent/UseEffect";
+import UseRef from "./components/functioncomponent/UseRef";
+import UseContext from "./components/functioncomponent/UseContext";
+import UseMemo from "./components/functioncomponent/UseMemo";
 import './App.css';
-import {BrowserRouter,Routes,Route} from "react-router-dom"
 
 function App() {
-  return(
-
+  return (
     <div>
       <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home/>}></Route>
-        <Route path="/About" element={<About/>}></Route>
-        <Route path="/Gallery" element={<Gallery/>}></Route>
-        <Route path="/Contact" element={<Contact/>}></Route>
-     </Routes>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/useeffect" element={<UseEffect />} />
+          <Route path="/useref" element={<UseRef />} />
+          <Route path="/usecontext" element={<UseContext />} />
+          <Route path="/usememo" element={<UseMemo />}/>
+
+        </Routes>
       </BrowserRouter>
-      <Navbar />
       <Classcomp />
-      <About college="kec" clg1="arts"clg2="poli" />
-      <Gallery />
-      <Contact />
-      <Home />
     </div>
   );
 }
+
 export default App;

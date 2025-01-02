@@ -27,6 +27,9 @@ var Navbar = () => {
           <Link to="/useref" id="useref">useref</Link>
         </li>
         <li className="nav-item">
+          <Link to="/useeffect" id="useeffect">useeffect</Link>
+        </li>
+        <li className="nav-item">
           <Link to="/usecontext" id="usecontext">usecontext</Link>
         </li>
         <li className="nav-item">

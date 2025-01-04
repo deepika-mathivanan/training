@@ -35,6 +35,12 @@ var Navbar = () => {
         <li className="nav-item">
           <Link to="/usememo" id="usememo">usememo</Link>
         </li>
+        <li className="nav-item">
+          <Link to="/signup" id="signup">signup</Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/signin" id="signin">signin</Link>
+        </li>
         
       </ul>
 

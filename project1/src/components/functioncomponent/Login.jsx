@@ -8,7 +8,7 @@ function LoginForm() {
   const navigate = useNavigate();
   const login = async(event)=>{
     event.preventDefault()
-    var req = await axios.post("http://localhost:3001/login",{
+    var req = await axios.post("https://training-t9yn.onrender.com/login",{
       email,password
     })
     console.log(req.data)

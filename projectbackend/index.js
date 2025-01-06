@@ -1,98 +1,84 @@
-
-
-var express = require('express');
-var path = require('path');
-var mdb = require('mongoose');
-var User = require('./models/users');
-const { password } = require('pg/lib/defaults');
+var express = require("express");
+var path = require("path");
+var mdb = require("mongoose");
+var cors = require('cors')
+var env = require('dotenv')
+var User = require('./models/users')
 var app = express();
-const port = 3002;
 
-app.use(express.json());
+const PORT = 3001;
 
-app.listen(port, () => {
-    console.log(`Welcome to backend server\nURL: http://localhost:${port}`);
+env.config()
+app.use(express.json())
+app.use(cors())
+
+mdb
+  .connect(process.env.MONGO_URL)
+  .then(() => {
+    console.log("MongoDB Connection Successful");
+  })
+  .catch(() => {
+    console.log("Check your connection String");
+  });
+app.get("/", (req, res) => {
+  res.send("Welcome to Backend Server");
 });
-
-
-mdb.connect("mongodb://localhost:27017/")
-    .then(() => {
-        console.log("MongoDB connection successfull");
-    })
-    .catch((err) => {
-        console.log("Check your connection string", err);
-    });
-
-
-app.get('/', (req, res) => {
-    res.send("Welcome to backend server");
+app.get("/json", (req, res) => {
+  res.json({ server: "Welcome to Backend", url: "localhost", port: PORT });
 });
-
-app.get('/static', (req, res) => {
-    console.log(__dirname);
-    res.sendFile(path.join(__dirname, '/index.html'));
+app.get("/static", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
 });
-
-app.post('/signup', async (req, res) => {
-    console.log(req.body);
-    var { firstName, lastName, email, password } = req.body;
-    console.log(firstName, lastName, email, password);
-
-    try {
-        /*var newUser = new User({
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password:password
-        });*/
+app.post('/signup',(req,res)=>{
+    // var {firstName,lastName,email,password} = req.body
+    try{
+        // var newUser = new User({
+        //     firstName:firstName,
+        //     lastName:lastName,
+        //     email:email,
+        //     password:password
+        // })
         var newUser = new User(req.body)
-        console.log(req.body.password)
-        await newUser.save();
-        console.log("User added successfully");
-        res.status(200).send("User added successfully");
-    } catch (err) {
-        console.error("Error adding user:", err);
-        res.status(500).send("Error adding user");
+        console.log(req.body.password);
+        newUser.save()
+        console.log("User Added Successfully");
+        res.status(200).send("User Added Successfully")
     }
-});
-
-app.get('/getsignup', async (req, res) => {
-    try {
-        var allSignupRecord = await User.find();
-        res.json(allSignupRecord);
-        console.log("All data fetched");
-    } catch (err) {
-        console.error("Error fetching data:", err);
-        res.status(500).send("Error fetching data");
-    }
-});
-app.post('/login', async (req, res) => {
-    var { email, password } = req.body
-    try {
-        var existingUser = await User.findOne({ email: email })
-        console.log(existingUser)
-        if (existingUser) {
-            if (existingUser.password !== password) {
-                res.json({ message: "invalid password", isloggedIn: false })
-            }
-            else {
-                res.json({ message: "login sucess", isloggedIn: true })
-
-            }
-            res.json({ message: "login sucess", isloggedIn: true })
-
-        }
-        else {
-            res.json({ message: "login failed", isloggedIn: false })
-
-        }
-    }
-    catch (err) {
-        console.log("login failed")
+    catch(err){
+        console.log(err);
     }
 })
-
-app.get('/json', (req, res) => {
-    res.json({ server: "Welcome to backend server", url: "localhost", port: port });
+app.get('/getsignup',async(req,res)=>{
+    try{
+        var allSignUpRecords = await User.find()
+        res.json(allSignUpRecords)
+        console.log("All Data Fetched");
+    }
+    catch(err){
+        console.log(err);
+        res.send(err)
+    }
+})
+app.post('/login',async(req,res)=>{
+    var {email,password} = req.body
+    try{
+        var existingUser = await User.findOne({email:email})
+        if(existingUser){
+            if(existingUser.password !== password){
+                res.json({message:"Invalid Credentials",isLoggedIn:false})
+            }
+            else{
+                res.json({message:"Login Successful",isLoggedIn:true})
+            }
+        }
+        else{
+            res.json({message:"User Not Found",isLoggedIn:false})
+        }
+    }
+    catch(err){
+        console.log("Login Failed");
+    }
+})
+app.listen(PORT, () => {
+  console.log(`Backend Server Started\nUrl: http://localhost:${PORT}`);
 });
-

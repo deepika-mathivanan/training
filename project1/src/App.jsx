@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/functioncomponent/navbar";
+import Navbar from "./components/functioncomponent/Navbar";
 import Classcomp from "./components/classcomponent/Classcomp";
 import About from "./components/functioncomponent/About";
 import Gallery from "./components/functioncomponent/Gallery";
@@ -11,7 +11,7 @@ import UseRef from "./components/functioncomponent/UseRef";
 import UseContext from "./components/functioncomponent/UseContext";
 import UseMemo from "./components/functioncomponent/UseMemo";
 import Signup from "./components/functioncomponent/Signup";
-import Signin from "./components/functioncomponent/signin";
+import Login from "./components/functioncomponent/Login";
 import './App.css';
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
           <Route path="/usecontext" element={<UseContext />} />
           <Route path="/usememo" element={<UseMemo />}/>
           <Route path="/signup" element={<Signup />} />
-          <Route path="/signin" element={<Signin />} />
+          <Route path="/login" element={<Login />} />
 
 
 

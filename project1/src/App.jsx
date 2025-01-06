@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/functioncomponent/Navbar";
-import Classcomp from "./components/classcomponent/Classcomp";
 import About from "./components/functioncomponent/About";
 import Gallery from "./components/functioncomponent/Gallery";
 import Contact from "./components/functioncomponent/Contact";
@@ -35,7 +34,7 @@ function App() {
 
         </Routes>
       </BrowserRouter>
-      <Classcomp />
+     
     </div>
   );
 }
